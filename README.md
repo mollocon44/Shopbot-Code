@@ -3,4 +3,5 @@ Automates OpenSBP code for building voxel structures using the end effector on t
 
 
 
-### buildRectanglesSBP.py ### takes in dimensions for a solid rectangular prism and the size of the seed crystal, and outputs the shopbot code for assembly. The algorithm for voxel order seems sound, and it should scale nicely. 
+### buildRectanglesSBP.py 
+takes in dimensions for a solid rectangular prism and the size of the seed crystal, and outputs the shopbot code for assembly. The algorithm for voxel order seems sound, and it should scale nicely. 
