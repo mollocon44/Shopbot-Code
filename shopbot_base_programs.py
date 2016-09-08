@@ -1,5 +1,11 @@
 ## updated for test9.sbp
 
+### This is the message box version. It has pop-up windows for reloading, rather than our usual death-defying pausing method
+###It's entirely possible that the line after the message box wants to deal with the answer
+### if that's the case, it should need to be:
+### IF &msganswer = "OK" THEN ...[Whatever you were going to have it do next anyway]
+### but I think it should be okay as is
+
 ##################################################################
 ## This is the OpenSBP used for controlling the end effector,   ##
 ## written by Grace and Greenfield, with some tweaking by all 3 ##
@@ -110,8 +116,8 @@ def position_attach_z(dx,dy,dz):
 	return """
 M5 """ + str(-75) + """, """ + str(-off_camera) + """, """ + str(75) + """, 0, 0
 \'\'Reload bolt and voxel
-PAUSE 5
-GOSUB EngageGripper
+MSGBOX( Click OK to continue,64,Reload bolt and voxel!)
+GOSUB EngageGripper 
 
 M5 """ + str(-75+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, 0
 M5 """ + str(-30+dx) + """, """ + str(-30+dy) + """, """ + str(24+dz) + """, 0, 0
@@ -136,7 +142,7 @@ def position_attach_x(dx,dy,dz):
 	return """
 M5 """ + str(-75) + """, """ + str(-off_camera) + """, """ + str(75) + """, 0, 120
 \'\'Reload bolt and voxel
-PAUSE 5
+MSGBOX( Click OK to continue,64,Reload bolt and voxel!)
 GOSUB EngageGripper
 M5 """ + str(-75+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, 120
 M5 """ + str(-24+dx) + """, """ + str(-30+dy) + """, """ + str(30+dz) + """, 0, 120
@@ -163,7 +169,7 @@ def position_attach_y(dx,dy,dz):
 	return """
 M5 """ + str(-75) + """, """ + str(-off_camera) + """, """ + str(75) + """, 0, -120
 \'\'Reload bolt and voxel
-PAUSE 5
+MSGBOX( Click OK to continue,64,Reload bolt and voxel!)
 GOSUB EngageGripper
 M5 """ + str(-75+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, -120
 M5 """ + str(-30+dx) + """, """ + str(-24+dy) + """, """ + str(30+dz) + """, 0, -120
@@ -191,7 +197,7 @@ def attach_x(dx,dy,dz):
 	return """
 M5 """ + str(-75) + """, """ + str(-off_camera) + """, """ + str(75) + """, 0, 0
 \'\'\'Reload bolt
-PAUSE 5
+MSGBOX( Click OK to continue,64,Reload bolt!)
 M5 """ + str(-75+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, 120
 M5 """ + str(0+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, 120
 M5 """ + str(0+dx) + """, """+ str(-34.8109+dy) + """, """ + str(34.8109+dz) + """, 0, 120
@@ -209,7 +215,7 @@ def attach_y(dx,dy,dz):
 	return """
 M5 """ + str(-75) + """, """ + str(-off_camera) + """, """ + str(75) + """, 0, 0
 \'\'\'Reload bolt
-PAUSE 5
+MSGBOX( Click OK to continue,64,Reload bolt!)
 M5 """ + str(-75+dx) + """, """ + str(-75+dy) + """, """ + str(75+dz) + """, 0, -120
 M5 """ + str(-75+dx) + """, """ + str(0+dy) + """, """ + str(75+dz) + """, 0, -120
 M5 """ + str(-34.8109+dx) + """, """+ str(0+dy) + """, """ + str(34.8109+dz) + """, 0, -120
