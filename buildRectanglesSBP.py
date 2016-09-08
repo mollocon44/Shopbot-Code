@@ -13,7 +13,7 @@ and prints out the shopbot code to build it (minus seed crystal)
 import shopbot_base_programs as sbp
 
 x_dim,y_dim,z_dim = 3,3,3
-seed_crystal = 2
+seed_crystal = 2 # this is the number of diagonals of the seed crystal, not the number of voxels
 print sbp.header
 
 print "\n\'\'rectangle size " +str((x_dim,y_dim,z_dim)) + '\n'
