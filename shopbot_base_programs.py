@@ -1,7 +1,7 @@
 ## updated for test9.sbp
 
 ### This is the message box version. It has pop-up windows for reloading, rather than our usual death-defying pausing method
-###It's entirely possible that the line after the message box wants to deal with the answer
+### It's entirely possible that the line after the message box wants to deal with the answer
 ### if that's the case, it should need to be:
 ### IF &msganswer = "OK" THEN ...[Whatever you were going to have it do next anyway]
 ### but I think it should be okay as is
