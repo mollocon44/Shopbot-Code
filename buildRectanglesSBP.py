@@ -5,9 +5,13 @@ and prints out the shopbot code to build it (minus seed crystal)
 ''' Sorry it's the messy one, I'm taking my time to do the pretty version properly.'''
 ''' If you need me, my email is oconnormollyc@gmail.com '''
 
-''' IMPLEMENTATION: python bruteRectangleSBP.py > filename.sbp '''
+''' IMPLEMENTATION: python buildRectanglesSBP.py > filename.sbp '''
 
-## optimized for test9.sbp 8/30
+## optimized for test9.sbp 8/30 
+##  ^
+## (Don't panic if you see a test10, that's because we were building the 3x3x3 and needed to 
+##  pause partway through to correct something, then couldn't figure out how to start from the 
+##  middle of the code. This one was up to date when I left on 9/8)
 
 
 import shopbot_base_programs as sbp
@@ -84,12 +88,12 @@ sb_zero_offset = 1 # shopbot zeros to voxel 1,1,1 not 0,0,0
 ##########################################################################
 ##########################################################################
 ## buildBlocks(blocksToPlace) will takes in a list blocksToPlace in the ##
-## current diagonal and outputs the shopbot code (with appropriate 		##
+## current diagonal and outputs the shopbot code (with appropriate 	##
 ## comments) needed to place the blocks, coordinates (x,y,z), in the 	##
-## correct order. It is called by buildDiagonal							##
+## correct order. It is called by buildDiagonal				##
 ##########################################################################
 ##########################################################################
-def buildBlocks(blocksToPlace):  #for testing purposes, prints out a list of blocks to attach during each step (in order)
+def buildBlocks(blocksToPlace):  
 	for (x,y,z) in blocksToPlace:
 		print "\'\' NEXT VOXEL = "+str((x,y,z))
 		dx = -76.2*(x - sb_zero_offset) #76.2 is the conversion factor from 3in to mm
