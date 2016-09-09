@@ -1,10 +1,7 @@
-''' Takes in dimensions of a rectangular prism (x_dim,y_dim,z_dim)
-and gives us a clumsily animated scatter plot of octagons appearing in the location and order of the voxels. 
-It still contains the code for writing the whole OpenSBP program, but I commented it out for testing purposes. 
-Still prints out which voxel it's on just for the hell of it, though.
+''' Clumsy first attempt at integrating the cuboct plotting into the whole graph.
 
-It doesn't plot things from left to right, just does whole diagonals' layers at a time. You'll see what I mean if you run it once.
-'''
+	Doesn't work. '''
+
 
 ## optimized for test9.sbp 8/30
 
@@ -13,24 +10,27 @@ import shopbot_base_programs as sbp
 import numpy as np
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d.axes3d as p3
-#import matplotlib.animation as animation
-#at one point it imported Path to try to make a voxel shape for plotting, but it turns out Paths can only be 2D
-#import random
+import matplotlib.animation as animation
+from matplotlib.path import Path
+import random
 import time
 
 
 
 
+random.seed()
+
+   #sample 3dplot code
+''' threeDfig = plt.figure()
+    ax = threeDfig.add_subplot(111, projection='3d')
+    ax.plot(x,y,z) '''
 
 
-#this is in case I want to make each plot layer a different color later
-#a spectrum might be nicer, now that I think about it
-'''random.seed()
 def random_color():
     r = random.random()
     g = random.random()
     b = random.random()
-    return (r,g,b)'''
+    return (r,g,b)
 
 
 vox_plot = plt.figure()   
@@ -109,7 +109,33 @@ def buildDiagonal(step, layer):
 sb_zero_offset = 1 # shopbot zeros to voxel 1,1,1 not 0,0,0
 				   # we will subtract this later
 
+## cuboct_verts based on Daniel Celluci's code pfea/src/cuboct.py
+## would be more elegant as its own Class but I don't have that kind of time right now
+cuboct_verts = [(0.5,0.5,0.0),
+				(0.5,0.0,0.5),
+				(0.5,0.5,1.0),
+				(0.5,1.0,0.5),
+				(0.5,0.5,0.0),
+				(1.0,0.5,0.5),
+				(0.5,0.5,1.0),
+				(0.0,0.5,0.5),
+				(0.5,1.0,0.5),
+				(1.0,0.5,0.5),
+				(0.5,0.0,0.5),
+				(0.0,0.5,0.5),
+				(0.5,0.5,0.0)]
+				
+def plot_cuboct(dx,dy,dz):
+	ax = p3.Axes3D(vox_plot)
 
+	global xs,ys,zs
+
+	for (x,y,z) in cuboct_verts:
+		xs.append(x+dx)
+		ys.append(y+dy)
+		zs.append(z+dz)
+
+	ax.plot(xs, ys, zs, zdir='z', c='b')
 
 
 
@@ -122,8 +148,7 @@ sb_zero_offset = 1 # shopbot zeros to voxel 1,1,1 not 0,0,0
 ##########################################################################
 ##########################################################################
 def buildBlocks(blocksToPlace):  #for testing purposes, prints out a list of blocks to attach during each step (in order)
-
-
+	
 	for (x,y,z) in blocksToPlace:
 		print "\'\' NEXT VOXEL = "+str((x,y,z))
 		dx = -76.2*(x - sb_zero_offset) #76.2 is the conversion factor from 3in to mm
@@ -149,15 +174,13 @@ def buildBlocks(blocksToPlace):  #for testing purposes, prints out a list of blo
 			print "\n\'\'\'\'\'Place and attach x\n"
 			print sbp.position_attach_x(dx,dy,dz)'''
 		
-		xs.append(x)
-		ys.append(y)
-		zs.append(z)
+		#xs.append(x)
+		#ys.append(y)
+		#zs.append(z)
 	
-		
-	ax.scatter(xs,ys,zs,zdir='z',s=300,c='b',marker = '8',depthshade=True)
-	plt.pause(0.6) #animation
-	# doesn't go from left to right yet, should probably put the pause in a for loop #
-	# running through an indexed xs,ys,zs 											 #
+		plot_cuboct(x,y,z)
+
+	plt.pause(0.6)
 	
 
 	#print '\n'
@@ -174,15 +197,6 @@ print "\nEND"
 #print sbp.end_effector_programs
 plt.ioff()
 plt.show()
-
-
-
-
-
-
-
-
-
 
 
 
