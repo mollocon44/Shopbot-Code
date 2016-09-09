@@ -16,3 +16,5 @@ contains all of Grace and Greenfield's OpenSBP (.sbp) code for controlling the e
 ### plotCuboct.py
 plots a cuboct in a 3d line graph. I'm not quite sure how to integrate it with buildRectanglesSBP.py yet
 
+### buildRectanglesSBP_Plots.py
+plots a scatter plot in the proper order. Check the plots branch to see attempts to integrate with plotCuboct.py
